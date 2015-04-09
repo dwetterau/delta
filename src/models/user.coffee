@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) ->
     username:
       type: DataTypes.STRING
       unique: true
-      validate: {notNull: true}
+      allowNull: false
     password:
       type: DataTypes.STRING
-      validate: {notNull: true}
+      allowNull: false
   , instanceMethods:
 
     hash_and_set_password: (unhashed_password, next) ->
