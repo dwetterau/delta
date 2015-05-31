@@ -51,7 +51,12 @@ FormPage = React.createClass
       if obj.clearValue
         obj.clearValue()
 
-  render: () ->
+  _renderSignInWithSlack: ->
+    <div id="signInWithSlack">
+      <RaisedButton linkButton=true href="/api/auth/slack" label="Sign in with Slack" />
+    </div>
+
+  render: ->
     <div className="mui-app-content-canvas container">
       <div className="page-header">
         <h1>{@props.pageHeader}</h1>
@@ -64,6 +69,9 @@ FormPage = React.createClass
           </form>
         </div>
       </Paper>
+      {if @props.signInWithSlack
+        @_renderSignInWithSlack()
+      }
     </div>
 
 module.exports = FormPage

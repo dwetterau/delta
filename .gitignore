@@ -4,3 +4,4 @@ bin/
 image/
 *.rdb
 *.log
+configs/config.json

@@ -20,9 +20,9 @@ Login = React.createClass
       pageHeader: 'Sign in'
       inputs: [
         {
-          type: "text"
-          id: "username"
-          floatingLabelText: "Username"
+          type: "email"
+          id: "email"
+          floatingLabelText: "Email"
         }, {
           type: "password"
           id: "password"
@@ -35,5 +35,6 @@ Login = React.createClass
       ]
       submitLabel: 'Login'
       onSubmit: @_onSubmit
+      signInWithSlack: true
 
 module.exports = Login

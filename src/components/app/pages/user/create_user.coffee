@@ -21,9 +21,9 @@ CreateUser = React.createClass
       action: '/user/create'
       inputs: [
         {
-          type: "text"
-          id: "username"
-          floatingLabelText: "Username"
+          type: "email"
+          id: "email"
+          floatingLabelText: "Email"
         }, {
           type: "password"
           id: "password"
@@ -36,5 +36,6 @@ CreateUser = React.createClass
       ]
       submitLabel: 'Create account'
       onSubmit: @_onSubmit
+      signInWithSlack: true
 
 module.exports = CreateUser

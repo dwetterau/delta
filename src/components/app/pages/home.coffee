@@ -23,7 +23,7 @@ Home = React.createClass
         <div className="page-header">
           <h1>Welcome</h1>
         </div>
-        Hello {if @state.user then @state.user.username else "World"}!
+        Hello {if @state.user then @state.user.email else "World"}!
       </div>
     )
 

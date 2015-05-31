@@ -44,3 +44,7 @@ div.alert {
 .form-input {
     display: block;
 }
+
+#signInWithSlack {
+    text-align: center;
+}

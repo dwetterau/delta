@@ -2,13 +2,15 @@ bcrypt = require 'bcrypt'
 
 module.exports = (sequelize, DataTypes) ->
   User = sequelize.define "User",
-    username:
+    email:
       type: DataTypes.STRING
       unique: true
       allowNull: false
     password:
       type: DataTypes.STRING
-      allowNull: false
+  , classMethods:
+    associate: (models) ->
+      User.hasMany(models.SlackUser)
   , instanceMethods:
 
     hash_and_set_password: (unhashed_password, next) ->
@@ -26,11 +28,5 @@ module.exports = (sequelize, DataTypes) ->
         if err?
           return next(err)
         next(null, is_match)
-
-    to_json: () ->
-      return {
-        @username
-        @id
-      }
 
   return User
