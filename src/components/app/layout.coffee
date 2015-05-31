@@ -12,7 +12,7 @@ Layout = React.createClass
 
   render: ->
     # TODO: Set the title of the page dynamically with the state mixin
-    title = 'base-node-app'
+    title = 'delta'
 
     return (
       <div className="site">
@@ -33,8 +33,8 @@ Layout = React.createClass
           <div className="container text-center">
             <p className="pull-left">Made By David Wetterau</p>
             <ul className="pull-right list-inline">
-              <li><a href="https://github.com/dwetterau/base-node-app">Github Project</a></li>
-              <li><a href="https://github.com/dwetterau/base-node-app/issues">Issues</a></li>
+              <li><a href="https://github.com/dwetterau/delta">Github Project</a></li>
+              <li><a href="https://github.com/dwetterau/delta/issues">Issues</a></li>
             </ul>
           </div>
         </div>
