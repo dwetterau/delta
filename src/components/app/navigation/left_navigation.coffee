@@ -36,7 +36,7 @@ LeftNavigation = React.createClass
     ]
     if @state.user
       menuItems = menuItems.concat [
-        {type: MenuItem.Types.SUBHEADER, text: @state.user.username}
+        {type: MenuItem.Types.SUBHEADER, text: @state.user.email}
         @getItem 'user/password', 'Change Password'
         {text: 'Logout'}
       ]
