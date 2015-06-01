@@ -62,7 +62,8 @@
     "request": "^2.57.0",
     "sequelize": "^2.0.6",
     "sequelize-cli": "^1.4.0",
-    "serve-favicon": "^2.1.7"
+    "serve-favicon": "^2.1.7",
+    "shortid": "^2.2.2"
   },
   "devDependencies": {
     "chai": "*",

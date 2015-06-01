@@ -5,6 +5,5 @@ exports.get_connect_slack = (req, res, next) ->
 
 exports.get_connect_slack_callback = (req, res) ->
   passport.authenticate('slack', failureRedirect: '/user/login')(req, res, ->
-    console.log "end of authorize...", req.user
     res.redirect '/'
   )

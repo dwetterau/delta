@@ -1,11 +1,5 @@
 module.exports = (sequelize, DataTypes) ->
   SlackUser = sequelize.define "SlackUser",
-    url:
-      type: DataTypes.STRING
-      allowNull: false
-    team:
-      type: DataTypes.STRING
-      allowNull: false
     username:
       type: DataTypes.STRING
       allowNull: false
@@ -35,6 +29,7 @@ module.exports = (sequelize, DataTypes) ->
       allowNull: false
     slackUserId:
       type: DataTypes.STRING
+      unique: true
       allowNull: false
     token:
       type: DataTypes.STRING
@@ -42,5 +37,6 @@ module.exports = (sequelize, DataTypes) ->
   , classMethods:
     associate: (models) ->
       SlackUser.belongsTo(models.User)
+      SlackUser.hasMany(models.Participant)
 
   return SlackUser

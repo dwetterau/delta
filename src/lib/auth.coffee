@@ -54,9 +54,7 @@ passport.use new SlackStrategy({
           console.log "Finished making the user, making the slack user"
           userToReturn = user
           return SlackUser.create
-            url: profile._json.url
-            team: profile._json.team
-            username: profile._json.user
+            username: response.user.name
             firstName: response.user.profile.first_name
             lastName: response.user.profile.last_name
             realName: response.user.profile.real_name_normalized
@@ -66,7 +64,7 @@ passport.use new SlackStrategy({
             image72: response.user.profile.image_72
             image192: response.user.profile.image_192
             teamId: profile._json.team_id
-            slackUserId: profile._json.user_id
+            slackUserId: response.user.id
             token: accessToken
             UserId: userToReturn.id
         .then ->
