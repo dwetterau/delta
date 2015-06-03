@@ -46,7 +46,7 @@ exports.post_user_login = (req, res, next) ->
       if err?
         return next err
 
-      res.send {ok: true, body: {redirect_url, user: user.to_json()}}
+      res.send {ok: true, body: {redirect_url, user: user.toJSON()}}
   )(req, res, next)
 
 exports.get_user_logout = (req, res) ->
@@ -72,7 +72,7 @@ exports.post_change_password = (req, res) ->
     user.compare_password old_password, (err, is_match) ->
       is_null = user.password is null
       if not is_null and (not is_match or err)
-        return fail('Current password incorrect');
+        return fail('Current password incorrect')
 
       user.hash_and_set_password new_password, (err) ->
         if err?

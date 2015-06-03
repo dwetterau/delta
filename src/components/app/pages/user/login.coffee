@@ -11,7 +11,7 @@ Login = React.createClass
   _onSubmit: (fields) ->
     userLoginRequest(fields).then (response) =>
       @transitionTo response.redirect_url
-      Notifier.info('Login successful!');
+      Notifier.info('Login successful!')
 
     .catch Notifier.error
 

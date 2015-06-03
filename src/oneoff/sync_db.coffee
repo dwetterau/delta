@@ -1,7 +1,7 @@
 models = require '../models'
 models.sequelize
   .sync()
-  .complete (err) ->
+  .then (err) ->
     if err?
       console.log "An error occurred while creating the table", err
     else
