@@ -1,6 +1,7 @@
 shortid = require 'shortid'
 
 {Event, Participant, SlackUser} = require '../models'
+{constants} = require '../lib/common'
 
 exports.get_event = (req, res) ->
   fail = (error) ->
@@ -19,12 +20,23 @@ exports.get_event = (req, res) ->
     res.send {ok: true, body: event}
   .catch fail
 
+_add_participants_bulk = (eventId, slackUserIds, status) ->
+  participants = []
+  for userId in slackUserIds
+    participants.push {
+      SlackUserId: userId
+      EventId: eventId
+      status
+    }
+  Participant.bulkCreate participants
+
 exports.post_create_event = (req, res) ->
   fail = (error) ->
     console.log "post_create_event error", error
     return res.send {ok: false, error: errors}
 
   req.assert('name', 'Must provide event name.').notEmpty()
+  req.assert('creatorSlackId', 'Must provide creator slack id.').notEmpty()
   errors = req.validationErrors()
   if errors?
     fail errors
@@ -35,7 +47,17 @@ exports.post_create_event = (req, res) ->
     date: req.param 'date' || null
     shortId: shortid.generate()
   }
-  Event.create(event).then (event) ->
+  user = null
+  event = null
+  SlackUser.find({where: {SlackUserId: req.param 'creatorSlackId'}}).then (slackUser) ->
+    if not slackUser?
+      return fail 'Could not find slack user.'
+    user = slackUser
+    return Event.create(event)
+  .then (newEvent) ->
+    event = newEvent
+    return _add_participants_bulk event.id, [slackUser.id], constants.EVENT_STATUS_ATTENDING
+  .then (newParticipants)
     res.send {ok: true, body: event}
   .catch fail
 
